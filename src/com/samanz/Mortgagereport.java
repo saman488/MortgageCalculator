@@ -3,9 +3,13 @@ package com.samanz;
 import java.text.NumberFormat;
 
 public class Mortgagereport {
+    private static MortgageCalculator calculator;
+
     public static void printMortgage(int principal, float annualInterest, byte years) {
-        double mortgage = Main.calculateMortgage(principal, annualInterest, years);
+        var calculator = new MortgageCalculator(principal, (byte) annualInterest,years);
+        double mortgage = calculator.calculateMortgage();
         String mortgageFormatted = NumberFormat.getCurrencyInstance().format(mortgage);
+
         System.out.println();
         System.out.println("MORTGAGE");
         System.out.println("__________________________________");
@@ -17,7 +21,7 @@ public class Mortgagereport {
         System.out.print("PAYMENT SCHEDULE HEADING");
         System.out.println("_______________________");
         for (short month = 1; month <= years * Main.MONTH_IN_YEAR; month++) {
-            double balance = Main.calculateBalance(principal, annualInterest, years, month);
+            double balance = MortgageCalculator.calculateBalance(month);
             System.out.println(NumberFormat.getCurrencyInstance().format(balance));
         }
     }
