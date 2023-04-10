@@ -13,7 +13,7 @@ public class MortgageReport {
         System.out.println();
         System.out.print("PAYMENT SCHEDULE HEADING");
         System.out.println("_______________________");
-        for (short month = 1; month <= calculator.getYears() * Main.MONTH_IN_YEAR; month++) {
+        for (short month = 1; month <= calculator.getYears() * MortgageCalculator.MONTH_IN_YEAR; month++) {
             double balance = calculator.calculateBalance(month);
             System.out.println(NumberFormat.getCurrencyInstance().format(balance));
         }
